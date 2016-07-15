@@ -46,3 +46,13 @@ group :development do
 end
 
 gem 'bootstrap-sass'
+
+ruby '2.3.1'
+
+group :production do
+  			gem 'pg' #(only if using postgres db)
+ 			 gem 'rails_12factor'
+		end
+		group :development, :test do (if local db is sqlite3)
+  			gem 'sqlite3'
+		end

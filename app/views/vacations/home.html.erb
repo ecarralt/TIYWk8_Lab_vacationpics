@@ -1,0 +1,23 @@
+<div class="page-header">
+  <h1>Map <small>of your vacations</small></h1>
+</div>
+
+
+<%= debug @current_user.inspect %>
+
+<div id="map"></div>
+<div id="capture"></div>
+<script>
+  var map;
+  function initMap() {
+
+    var centervar = {lat: <%= @current_user.latitude %> , lng: @current_user.longitude};
+
+    map = new google.maps.Map(document.getElementById('map'), {
+      center: centervar,
+      zoom: 10
+    });
+  }
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key= AIzaSyBAFXmh6HiVddGFqWQdyf004JE21bwISlQ&callback=initMap"
+async defer></script>

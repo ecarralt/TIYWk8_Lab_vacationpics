@@ -1,10 +1,17 @@
-<div class="page-header">
-  <h1>Map <small>of your vacations</small></h1>
+<div class="row">
+  <div class="col-sm-10 col-sm-offset-1">
+    <div class="page-header">
+      <h1>PhotoMap <small>a collection of all vacation moments</small></h1>
+      <div class="menulinks">
+        <%= link_to "Add Photos", new_photo_path, class: "btn btn-primary"%>
+      </div>
+    </div>
+  </div>
+
 </div>
 
-<div class="menulinks">
-  <%= link_to "Add Photos", new_photo_path, class: "btn btn-primary"%>
-</div>
+
+
 
 <div id="map"></div>
 <div id="capture"></div>
@@ -15,7 +22,7 @@
 
     var centervar = {lat: <%= @current_user.latitude %> , lng: <%= @current_user.longitude%> };
     //var homeicon = 'https://cdn1.iconfinder.com/data/icons/engineers7/102/Untitled-28-512.png';
-    var homeicons = {
+    var homeicon = {
     url: 'https://cdn1.iconfinder.com/data/icons/engineers7/102/Untitled-28-512.png',
     // This marker is 20 pixels wide by 32 pixels high.
     scaledSize: new google.maps.Size(30, 37),
@@ -25,38 +32,65 @@
     anchor: new google.maps.Point(0, 32)
   };
 
+//add map calling the central location
+
     map = new google.maps.Map(document.getElementById('map'), {
       center: centervar,
-      zoom: 11
+      zoom: 2
     });
-    var marker = new google.maps.Marker({
+
+    // add marker for users home
+    var homemarker = new google.maps.Marker({
           position: centervar,
           map: map,
           title: 'Hello World!',
-          icon: homeicons
+          icon: homeicon
         });
 
-    marker.addListener('click', function() {
-      infowindow.open(map, marker);
-    });
 
-
-    var contentString = '<div id="content">'+
-    '<div id="siteNotice">'+
-    '</div>'+
-    '<h1 id="firstHeading" class="firstHeading"> <%= @current_user.first_name%> </h1>'+
-    '<div id="bodyContent">'+
-    '<p><b></b> your current location!</p>'+
-    '<p></p>'+
-    '</div>'+
+//adding commentbox at click
+    var homecontentString =
+    '<div id="content">'+
+      '<div id="siteNotice">'+
+      '</div>'+
+      '<h1 id="firstHeading" class="firstHeading"> <%= @current_user.first_name%> </h1>'+
+      '<div id="bodyContent">'+
+        '<p><b></b> your current location!</p>'+
+        '<p></p>'+
+      '</div>'+
     '</div>';
 
-    var infowindow = new google.maps.InfoWindow({
-      content: contentString
+    var homeinfowindow = new google.maps.InfoWindow({
+      content: homecontentString
     });
 
+    homemarker.addListener('click', function() {
+      homeinfowindow.open(map, homemarker);
+    });
+
+//add markers for each picture
+    <% @photos.each do |photo| %>
+      var marker<%= photo.id %> = new google.maps.Marker({
+         position: {lat: <%= photo.latitude %>, lng: <%= photo.longitude %>},
+         map: map
+      //   icon:
+       });
+
+
+      <% if false %>
+      //  var infowindow<%= photo.id %> = new google.maps.InfoWindow({
+      //   content: '<%= link_to marker.title, taco_path(id: marker.id) %>'
+      //   });
+      //
+      //  marker<%= photo.id %>.addListener('click', function() {
+      //   infowindow<%= photo.id %>.open(map, marker<%= photo.id %>);
+      // });
+      <% end %>
+    <% end %>
 
   }
+
+
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=  AIzaSyDcFFtbDcOTG4OuQLlLfwRGgfpolb4GzjA&callback=initMap"
 async defer></script>

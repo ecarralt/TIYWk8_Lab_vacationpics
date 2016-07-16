@@ -1,0 +1,64 @@
+<div class="row">
+
+  <div class="col-xs-10 col-xs-offset-3 sign_in_title">
+    <h2>Sign up here... <small>happy you are ready to create your vacation memories! </small>
+    </h2 >
+  </div>
+
+</div>
+
+      <% if @user.errors.any? %>
+        <div class="errors">
+          <% @user.errors.full_messages.each do |msg| %>
+            <p>
+              <%= msg %>
+            </p>
+          <% end %>
+        </div>
+      <% end %>
+
+<div class="row">
+  <div class="col-xs-7 col-xs-offset-3">
+    <div class="sign_up_form form-group">
+
+      <%= form_for @user, url: create_user_path do |f| %>
+
+        <div class="">
+          <%= f.label :first_name %>
+          <%= f.text_field :first_name,class: 'form-control' %>
+        </div>
+        <div class="">
+          <%= f.label :last_name %>
+          <%= f.text_field :last_name,class: 'form-control'%>
+        </div>
+        <div class="">
+          <%= f.label :email %>
+          <%= f.text_field :email,class: 'form-control'%>
+        </div>
+        <div class="">
+          <%= f.label :location %>
+          <%= f.text_field :location,class: 'form-control'%>
+        </div>
+        <div class="">
+          <%= f.label :username %>
+          <%= f.text_field :username,class: 'form-control'%>
+        </div>
+        <div class="">
+          <%= f.label :password %>
+          <%= f.password_field :password,class: 'form-control' %>
+        </div>
+        <div class="">
+          <%= f.label :password_confirmation, "Re-type password" %>
+          <%= f.password_field :password_confirmation,class: 'form-control'%>
+        </div>
+
+        <div class="sign_up_buttons">
+        <%= f.submit "Submit", class: "btn btn-warning"%>
+        or
+        <%= link_to 'Cancel', :back %>
+        </div>
+
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -8,6 +8,17 @@
 </head>
 <body>
 
+  <div class="row">
+  <div class="col-xs-7 col-xs-offset-3">
+    <% if notice %>
+      <div class="alert alert-warning">  <%= notice %>  </p>
+    <% end %>
+    </div>
+
+  </div>
+
+</div>
+
 <%= yield %>
 
 </body>

@@ -3,6 +3,7 @@ class VacationsController < ApplicationController
 
   def home
 
+    @vacations = Vacation.all
 
   end
 

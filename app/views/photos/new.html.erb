@@ -1,0 +1,40 @@
+<h1>New Photo</h1>
+
+<% if @photo.errors.any? %>
+  <div class="alert alert-danger" role="alert">
+    <% @photo.errors.full_messages.each do |msg| %>
+      <%= msg %><br>
+    <% end %>
+  </div>
+<% end %>
+
+<%= form_for (@photo), url: create_photo_path(@photo) do |f| %>
+  <div class="">
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+  </div>
+  <div class="">
+    <%= f.label :location %>
+    <%= f.text_field :location %>
+  </div>
+  <div class="">
+    <%= f.label :latitude %>
+    <%= f.text_field :latitude %>
+  </div>
+  <div class="">
+    <%= f.label :longitude %>
+    <%= f.text_field :longitude %>
+  </div>
+  <div class="">
+    <%= f.label :vacation_id %>
+    <%= f.text_field :vacation_id %>
+  </div>
+  <div class="">
+    <%= f.label :photofile %>
+    <%= f.attachment_field :photofile %>
+  </div>
+
+  <div class="">
+    <%= f.submit "Add Photo" %>
+  </div>
+<% end %>

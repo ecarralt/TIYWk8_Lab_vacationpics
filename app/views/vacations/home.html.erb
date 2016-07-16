@@ -3,21 +3,57 @@
 </div>
 
 
-<%= debug @current_user.inspect %>
-
 <div id="map"></div>
 <div id="capture"></div>
 <script>
+
   var map;
   function initMap() {
 
-    var centervar = {lat: <%= @current_user.latitude %> , lng: @current_user.longitude};
+    var centervar = {lat: <%= @current_user.latitude %> , lng: <%= @current_user.longitude%> };
+    //var homeicon = 'https://cdn1.iconfinder.com/data/icons/engineers7/102/Untitled-28-512.png';
+    var homeicons = {
+    url: 'https://cdn1.iconfinder.com/data/icons/engineers7/102/Untitled-28-512.png',
+    // This marker is 20 pixels wide by 32 pixels high.
+    scaledSize: new google.maps.Size(30, 37),
+    // The origin for this image is (0, 0).
+    origin: new google.maps.Point(0, 0),
+    // The anchor for this image is the base of the flagpole at (0, 32).
+    anchor: new google.maps.Point(0, 32)
+  };
 
     map = new google.maps.Map(document.getElementById('map'), {
       center: centervar,
-      zoom: 10
+      zoom: 11
     });
+    var marker = new google.maps.Marker({
+          position: centervar,
+          map: map,
+          title: 'Hello World!',
+          icon: homeicons
+        });
+
+    marker.addListener('click', function() {
+      infowindow.open(map, marker);
+    });
+
+
+    var contentString = '<div id="content">'+
+    '<div id="siteNotice">'+
+    '</div>'+
+    '<h1 id="firstHeading" class="firstHeading"> <%= @current_user.first_name%> </h1>'+
+    '<div id="bodyContent">'+
+    '<p><b></b> your current location!</p>'+
+    '<p></p>'+
+    '</div>'+
+    '</div>';
+
+    var infowindow = new google.maps.InfoWindow({
+      content: contentString
+    });
+
+
   }
 </script>
-<script src="https://maps.googleapis.com/maps/api/js?key= AIzaSyBAFXmh6HiVddGFqWQdyf004JE21bwISlQ&callback=initMap"
+<script src="https://maps.googleapis.com/maps/api/js?key=  AIzaSyDcFFtbDcOTG4OuQLlLfwRGgfpolb4GzjA&callback=initMap"
 async defer></script>

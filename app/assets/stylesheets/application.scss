@@ -2,4 +2,20 @@
 @import "bootstrap";
 @import "welcome";
 @import "users";
-@import "vacations"
+@import "vacations";
+
+
+.creditsbar {
+
+  background-color: $blue;
+  text-align: center;
+  color: #ffffff;
+  padding-top: 5px;
+  padding-bottom: 5px;
+
+  h6 {
+    margin: 0px;
+
+  }
+
+}

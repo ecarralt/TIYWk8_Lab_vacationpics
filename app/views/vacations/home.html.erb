@@ -77,15 +77,17 @@
        });
 
 
-      <% if false %>
-      //  var infowindow<%= photo.id %> = new google.maps.InfoWindow({
-      //   content: '<%= link_to marker.title, taco_path(id: marker.id) %>'
-      //   });
-      //
-      //  marker<%= photo.id %>.addListener('click', function() {
-      //   infowindow<%= photo.id %>.open(map, marker<%= photo.id %>);
-      // });
-      <% end %>
+       var photoinfowindow<%= photo.id %> = new google.maps.InfoWindow({
+        content:
+          '<p> <%=photo.title%></p>'+
+          '<%= attachment_image_tag(photo, :photofile, :limit, 200, 200) %>'+
+          '<p><b>Vacation: </b> <%= photo.vacation.name %></p>'
+        });
+
+       marker<%= photo.id %>.addListener('click', function() {
+        photoinfowindow<%= photo.id %>.open(map, marker<%= photo.id %>);
+      });
+
     <% end %>
 
   }

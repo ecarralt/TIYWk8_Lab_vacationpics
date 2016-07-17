@@ -1,3 +1,64 @@
+== Api
+
+
+API DEFINITION
+=======
+
+
+This app allows authenticated users to view/create/update/delete posts
+
+Below, you can find the API descriptions
+
+
+0. Authenticate
+
+  post credentials using:
+
+    POST '/oauth/token'
+
+  credentials:
+
+  {
+    "username": "",
+    "password": "",
+    "grant_type": "password"
+  }
+
+
+1. View the group of posts:
+
+
+  request:  GET /api/me/photos
+
+Request body: n/a
+
+Will return all posts in this format:
+
+{
+  "photos": [
+    {
+      "id": 1,
+      "title": "irvine",
+      "location": "Irvine, CA",
+      "latitude": "33.621547",
+      "longitude": "-117.928052",
+      "center_location": null,
+      "vacation_id": 2
+    },
+    {
+      "id": 2,
+      "title": "LA Daytrip",
+      "location": "Somewhere in LA",
+      "latitude": "34.052234",
+      "longitude": "-118.243685",
+      "center_location": null,
+      "vacation_id": 2
+    }
+    ]
+}
+
+
+
 == README
 
 This README would normally document whatever steps are necessary to get the

@@ -3,6 +3,7 @@
     <div class="page-header">
       <h1>PhotoMap <small>a collection of all your most special vacation moments</small></h1>
       <div class="menulinks">
+        <%= link_to "Add a Vacation", new_vacation_path, class: "btn btn-primary"%>
         <%= link_to "Add Photos", new_photo_path, class: "btn btn-primary"%>
       </div>
     </div>
@@ -53,9 +54,9 @@
     '<div id="content">'+
       '<div id="siteNotice">'+
       '</div>'+
-      '<h1 id="firstHeading" class="firstHeading"> <%= @current_user.first_name%> </h1>'+
+      '<h3 id="firstHeading" class="firstHeading"> <%= @current_user.first_name%> </h3>'+
       '<div id="bodyContent">'+
-        '<p><b></b> your current location!</p>'+
+        '<p><b>your location: </b> <%= @current_user.location %></p>'+
         '<p></p>'+
       '</div>'+
     '</div>';

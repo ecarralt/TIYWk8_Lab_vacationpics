@@ -24,9 +24,6 @@ class PhotosController < ApplicationController
     # photo.latitude = params[:photo][:latitude]
     # photo.longitude = params[:photo][:longitude]
 
-
-
-
     if photo.save
       redirect_to home_path
     else

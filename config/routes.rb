@@ -1,10 +1,15 @@
 Rails.application.routes.draw do
 
+  use_doorkeeper
+
+
   root 'welcome#vacationpics', as: :welcome
-  get 'vacationpics/home' => 'vacations#home', as: :home
+  get 'vacations/home' => 'vacations#home', as: :home
+  get 'vacations/new' => "vacations#new", as: :new_vacation
+  post 'vacations/create' => "vacations#create", as: :create_vacation
 
   get 'registration' => "users#new", as: :new_user
-  post 'registration' => "users#create", as: :create_user
+  post 'registration/create' => "users#create", as: :create_user
 
 
   post "/" => "sessions#create", as: :create_sign_in
@@ -13,6 +18,7 @@ Rails.application.routes.draw do
   get 'photos/new' => "photos#new", as: :new_photo
   post 'photos/create' => "photos#create", as: :create_photo
 
+  get '/api/me/photos' => "api/photos#index", as: :api_photos #returns all photos
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

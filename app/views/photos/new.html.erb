@@ -27,7 +27,7 @@
   </div>
   <div class="">
     <%= f.label :vacation_id %>
-    <%= f.text_field :vacation_id %>
+    <%= f.collection_select :vacation_id, Vacation.all, :id, :name, prompt: true %>
   </div>
   <div class="">
     <%= f.label :photofile %>

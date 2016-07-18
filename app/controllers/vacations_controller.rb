@@ -1,17 +1,17 @@
 class VacationsController < ApplicationController
 
   def home
-
-    @vacations = Vacation.all
+    @vacations = @current_user.vacations
     @photos = @current_user.photos
     # @photos = @current_user.vacations.photos
+  end
 
+  def showall
+    @vacations = @current_user.vacations
   end
 
   def new
-
     @vacation = Vacation.new
-
   end
 
   def create
@@ -34,6 +34,12 @@ class VacationsController < ApplicationController
       redirect_to new_vacation_path, notice: "Please fill out all the info."
     end
 
+  end
+
+  def delete
+    @vacation = Vacation.find_by id: params[:id]
+    @vacation.destroy
+    redirect_to vacations_path, notice: "Vacation deleted successfully"
   end
 
 

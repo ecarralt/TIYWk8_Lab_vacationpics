@@ -5,8 +5,15 @@ Rails.application.routes.draw do
 
   root 'welcome#vacationpics', as: :welcome
   get 'vacations/home' => 'vacations#home', as: :home
+  get 'vacations/showall' => 'vacations#showall', as: :vacations
+
   get 'vacations/new' => "vacations#new", as: :new_vacation
   post 'vacations/create' => "vacations#create", as: :create_vacation
+
+  get 'vacations/edit' => 'vacations#edit', as: :edit_vacation
+  get 'vacations/update' => 'vacations#update', as: :update_vacation
+
+  delete 'vacations/delete' => 'vacations#delete', as: :delete_vacation
 
   get 'registration' => "users#new", as: :new_user
   post 'registration/create' => "users#create", as: :create_user

@@ -26,6 +26,23 @@ body {
   }
 }
 
+.menulinks_top{
+
+  margin-bottom: 20px;
+  display:flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+  align-content: flex-start;
+  align-items: center;
+
+}
+
+.page-header {
+  margin-top: 10px;
+
+}
+
 .creditsbar {
   font-family: "Trirong", serif;
 

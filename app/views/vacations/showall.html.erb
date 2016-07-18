@@ -1,0 +1,28 @@
+
+<div class="row">
+  <div class="col-xs-8 col-xs-offset-2">
+    <table class= "table table-hover">
+      <tr>
+        <th>Name</th>
+        <th>Location</th>
+        <th>Date Created </th>
+        <th>Update?</th>
+        <th>Delete?</th>
+      </tr>
+        <% @vacations.each do |vacation| %>
+          <tr>
+            <%= link_to vacations_path(id: vacation.id) do%>
+              <td><%= vacation.name %></td>
+              <td><%= vacation.center_location %></td>
+              <td><%= vacation.created_at.to_formatted_s(:short) %></td>
+              <td><%= link_to "Update", edit_vacation_path%></td>
+              <td><%= link_to "Delete", delete_vacation_path(id: vacation.id), method: :delete %></td>
+              <% end %>
+          </tr>
+        <% end %>
+
+    </table>
+
+  </div>
+
+</div>

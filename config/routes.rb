@@ -4,17 +4,9 @@ Rails.application.routes.draw do
 
 
   root 'welcome#vacationpics', as: :welcome
-<<<<<<< HEAD
   get 'vacations/home' => 'vacations#home', as: :home
   get 'vacations/new' => "vacations#new", as: :new_vacation
   post 'vacations/create' => "vacations#create", as: :create_vacation
-=======
-
-  get 'vacationpics/home' => 'vacations#home', as: :home
-  # get 'vacations/new' => "vacations#new", as: :new_vacation
-  # post 'vacations/create' => "vacations#create", as: :create_vacation
-
->>>>>>> master
 
   get 'registration' => "users#new", as: :new_user
   post 'registration/create' => "users#create", as: :create_user

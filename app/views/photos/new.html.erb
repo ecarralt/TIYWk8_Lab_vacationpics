@@ -23,7 +23,7 @@
 
         <div class="">
           <%= f.label :vacation_id, "Which vacation were you on?" %>
-          <%= f.collection_select :vacation_id, Vacation.all, :id, :name, prompt: true %>
+          <%= f.collection_select :vacation_id, @current_user.vacations, :id, :name, prompt: true %>
         </div>
         <div class="">
           <%= f.label :photofile, "Ready! Upload here and press 'Add Photo'" %>

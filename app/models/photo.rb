@@ -5,7 +5,11 @@ class Photo < ActiveRecord::Base
   validates :longitude, presence: true
 
   validates :photofile, presence: true
+  attachment :photofile, extension: "jpg"
+
   validates :vacation_id, presence: true
+
+
 
 
   has_many :photos

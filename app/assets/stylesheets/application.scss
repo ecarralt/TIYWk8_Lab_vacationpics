@@ -2,3 +2,42 @@
 @import "bootstrap";
 @import "welcome";
 @import "users";
+@import "vacations";
+@import "photos";
+
+body {
+  background-color: #ecf0f1;
+
+}
+
+.maintitle {
+  font-family: "Trirong", serif;
+  margin-top: 0;
+  background-color: #2980b9;
+  margin-right: -15px;
+
+  h1{
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: center;
+    color: #ffffff;
+  }
+}
+
+.creditsbar {
+  font-family: "Trirong", serif;
+
+  background-color: $blue;
+  text-align: center;
+  color: #ffffff;
+  padding-top: 5px;
+  padding-bottom: 5px;
+
+  h6 {
+    margin: 0px;
+
+  }
+
+}

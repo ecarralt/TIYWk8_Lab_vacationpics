@@ -1,15 +1,21 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>VacationPics</title>
+  <title>VacationPics_byECT</title>
+  <link rel="stylesheet" type="text/css"
+      href="https://fonts.googleapis.com/css?family=Trirong">
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 
+  <div class="maintitle">
+    <h1>VacationPics</h1>
+  </div>
+
   <div class="row">
-  <div class="col-xs-7 col-xs-offset-3">
+  <div class="col-sm-10 col-sm-offset-1">
     <% if notice %>
       <div class="alert alert-warning">  <%= notice %>  </p>
     <% end %>
@@ -20,6 +26,16 @@
 </div>
 
 <%= yield %>
+
+<footer>
+  <div class="creditsbar">
+
+      <h6>Enrique Carral Trevino</h6>
+      <h6>Copyright 2016</h6>
+
+  </div>
+
+</footer>
 
 </body>
 </html>

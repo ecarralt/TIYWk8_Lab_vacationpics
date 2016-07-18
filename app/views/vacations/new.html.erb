@@ -1,0 +1,73 @@
+<div class="row">
+
+  <div class="col-xs-10 col-xs-offset-3 sign_in_title">
+    <h2>New vacation... <small>glad you are travelling again! </small>
+    </h2 >
+  </div>
+
+</div>
+
+      <% if @vacation.errors.any? %>
+        <div class="errors">
+          <% @vacation.errors.full_messages.each do |msg| %>
+            <p>
+              <%= msg %>
+            </p>
+          <% end %>
+        </div>
+      <% end %>
+
+<div class="row">
+  <div class="col-xs-7 col-xs-offset-3">
+    <div class="sign_up_form form-group">
+
+      <%= form_for @vacation, url: create_vacation_path do |f| %>
+
+        <div class="">
+          <%= f.label :name, "Vacation name:"%>
+          <%= f.text_field :name,class: 'form-control', placeholder: "Ex: Egypt Trip"  %>
+        </div>
+        <div class="">
+          <%= f.label :center_location, "Input a central location for your trip:"%>
+          <%= f.text_field :center_location,class: 'form-control', placeholder: "Ex: '99 N. Post Oak Ln, Houston, TX 77024, USA', 'New York, NY', etc."%>
+        </div>
+        <div class="sign_up_buttons">
+        <%= f.submit "Submit", class: "btn btn-warning"%>
+        or
+        <%= link_to 'Cancel', :back %>
+        </div>
+
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+
+<% if false %>
+  <div class="col-xs-10 col-xs-offset-3 sign_in_title">
+    <h2>Remove a vacation here: <small></small>
+    </h2 >
+  </div>
+
+  <div class="sign_in_form">
+    <%= form_tag ({:class => 'form-group'}) do %>
+
+      <div class="">
+        <%= label_tag :vacation_id, "Which vacation were you on?" %>
+        <%= collection_select :vacation_id, Vacation.all, :id, :name, prompt: true %>
+      </div>
+
+      <div class="row sign_in_buttons">
+        <%= submit_tag "Delete vacation", class: "btn btn-warning" %>
+        or
+        <%= link_to 'Cancel', :back%>
+      </div>
+
+    <% end %>
+
+  </div>
+
+  <% end %>
+
+</div>

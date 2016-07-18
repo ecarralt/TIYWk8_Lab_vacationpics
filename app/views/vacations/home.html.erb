@@ -1,0 +1,100 @@
+<div class="row">
+  <div class="col-sm-10 col-sm-offset-1">
+    <div class="page-header">
+      <h1>PhotoMap <small>a collection of all your most special vacation moments</small></h1>
+      <div class="menulinks">
+        <%= link_to "Add a Vacation", new_vacation_path, class: "btn btn-primary"%>
+        <%= link_to "Add Photos", new_photo_path, class: "btn btn-primary"%>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+
+
+<div id="map"></div>
+<div id="capture"></div>
+<script>
+
+  var map;
+  function initMap() {
+
+    var centervar = {lat: <%= @current_user.latitude %> , lng: <%= @current_user.longitude%> };
+    //var homeicon = 'https://cdn1.iconfinder.com/data/icons/engineers7/102/Untitled-28-512.png';
+    var homeicon = {
+    url: 'https://cdn1.iconfinder.com/data/icons/engineers7/102/Untitled-28-512.png',
+    // This marker is 20 pixels wide by 32 pixels high.
+    scaledSize: new google.maps.Size(30, 37),
+    // The origin for this image is (0, 0).
+    origin: new google.maps.Point(0, 0),
+    // The anchor for this image is the base of the flagpole at (0, 32).
+    anchor: new google.maps.Point(0, 32)
+  };
+
+//add map calling the central location
+
+    map = new google.maps.Map(document.getElementById('map'), {
+      center: centervar,
+      zoom: 2
+    });
+
+    // add marker for users home
+    var homemarker = new google.maps.Marker({
+          position: centervar,
+          map: map,
+          title: 'Hello World!',
+          icon: homeicon
+        });
+
+
+//adding commentbox at click
+    var homecontentString =
+    '<div id="content">'+
+      '<div id="siteNotice">'+
+      '</div>'+
+      '<h3 id="firstHeading" class="firstHeading"> <%= @current_user.first_name%> </h3>'+
+      '<div id="bodyContent">'+
+        '<p><b>your location: </b> <%= @current_user.location %></p>'+
+        '<p></p>'+
+      '</div>'+
+    '</div>';
+
+    var homeinfowindow = new google.maps.InfoWindow({
+      content: homecontentString
+    });
+
+    homemarker.addListener('click', function() {
+      homeinfowindow.open(map, homemarker);
+    });
+
+//add markers for each picture
+    <% @photos.each do |photo| %>
+      var marker<%= photo.id %> = new google.maps.Marker({
+         position: {lat: <%= photo.latitude %>, lng: <%= photo.longitude %>},
+         map: map
+      //   icon:
+       });
+
+
+       var photoinfowindow<%= photo.id %> = new google.maps.InfoWindow({
+        content:
+          '<p> <%=photo.title%></p>'+
+          '<%= attachment_image_tag(photo, :photofile, :limit, 200, 200) %>'+
+          '<p><b>Vacation: </b> <%= photo.vacation.name %></p>'+
+          '<p><%=photo.created_at.to_formatted_s(:short)%></p>'
+        });
+
+       marker<%= photo.id %>.addListener('click', function() {
+        photoinfowindow<%= photo.id %>.open(map, marker<%= photo.id %>);
+      });
+
+    <% end %>
+
+  }
+
+
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=  AIzaSyDcFFtbDcOTG4OuQLlLfwRGgfpolb4GzjA&callback=initMap"
+async defer></script>

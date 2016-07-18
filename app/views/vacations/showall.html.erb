@@ -15,7 +15,7 @@
               <td><%= vacation.name %></td>
               <td><%= vacation.center_location %></td>
               <td><%= vacation.created_at.to_formatted_s(:short) %></td>
-              <td><%= link_to "Update", edit_vacation_path%></td>
+              <td><%= link_to "Update", edit_vacation_path(id: vacation.id) %>  </td>
               <td><%= link_to "Delete", delete_vacation_path(id: vacation.id), method: :delete %></td>
               <% end %>
           </tr>

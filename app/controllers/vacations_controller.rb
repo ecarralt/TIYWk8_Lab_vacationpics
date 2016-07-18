@@ -1,9 +1,7 @@
 class VacationsController < ApplicationController
 
   def home
-    @vacations = @current_user.vacations
     @photos = @current_user.photos
-    # @photos = @current_user.vacations.photos
   end
 
   def showall

@@ -4,9 +4,17 @@ Rails.application.routes.draw do
 
 
   root 'welcome#vacationpics', as: :welcome
+<<<<<<< HEAD
   get 'vacations/home' => 'vacations#home', as: :home
   get 'vacations/new' => "vacations#new", as: :new_vacation
   post 'vacations/create' => "vacations#create", as: :create_vacation
+=======
+
+  get 'vacationpics/home' => 'vacations#home', as: :home
+  # get 'vacations/new' => "vacations#new", as: :new_vacation
+  # post 'vacations/create' => "vacations#create", as: :create_vacation
+
+>>>>>>> master
 
   get 'registration' => "users#new", as: :new_user
   post 'registration/create' => "users#create", as: :create_user
@@ -19,6 +27,8 @@ Rails.application.routes.draw do
   post 'photos/create' => "photos#create", as: :create_photo
 
   get '/api/me/photos' => "api/photos#index", as: :api_photos #returns all photos
+
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

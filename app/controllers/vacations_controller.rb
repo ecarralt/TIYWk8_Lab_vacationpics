@@ -35,4 +35,7 @@ class VacationsController < ApplicationController
 
   end
 
+  # def delete
+  # end
+
 end

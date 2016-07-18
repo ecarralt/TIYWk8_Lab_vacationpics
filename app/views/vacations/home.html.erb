@@ -82,7 +82,8 @@
         content:
           '<p> <%=photo.title%></p>'+
           '<%= attachment_image_tag(photo, :photofile, :limit, 200, 200) %>'+
-          '<p><b>Vacation: </b> <%= photo.vacation.name %></p>'
+          '<p><b>Vacation: </b> <%= photo.vacation.name %></p>'+
+          '<p><%=photo.created_at.to_formatted_s(:short)%></p>'
         });
 
        marker<%= photo.id %>.addListener('click', function() {

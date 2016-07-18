@@ -15,6 +15,13 @@ class UsersController < ApplicationController
     @newuser.password = params[:user][:password]
     @newuser.password_confirmation = params[:user][:password_confirmation]
 
+    results = JSON.parse(Http.get("http://locationiq.org/v1/search.php?key=7b515e5d2f0389b8972f&format=json&q=#{CGI::escape(@newuser.location)}").body)
+
+    newuserlocation= results.first
+    @newuser.latitude = newuserlocation["lat"]
+    @newuser.longitude = newuserlocation["lon"]
+
+
     puts @newuser.inspect
 
     if @newuser.save

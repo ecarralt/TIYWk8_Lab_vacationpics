@@ -3,7 +3,8 @@ class VacationsController < ApplicationController
   def home
 
     @vacations = Vacation.all
-    @photos = Photo.all
+    @phtos = Photo.all
+    # @photos = @current_user.vacations.photos
 
   end
 
